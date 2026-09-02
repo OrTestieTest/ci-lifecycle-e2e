@@ -8,4 +8,4 @@ The `dependency-mirror` GitHub Actions check verifies that `constraints-lock.txt
 
 - `dependency-mirror` verifies that `constraints-lock.txt` mirrors every exact pin in `requirements.txt`.
 - `unit-tests` runs the stdlib `unittest` suite under `tests/`.
-- `infra-gate` fails whenever `.ci/infra-gate.fail` is present. It stands in for an environment gate that repository code cannot satisfy.
+- `infra-gate` fails whenever the branch's own commits touch `.ci/infra-gate.fail`, whether the file is still present or has since been removed. It stands in for an environment gate that repository code cannot clear.

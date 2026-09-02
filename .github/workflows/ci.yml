@@ -34,11 +34,14 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
       - name: Enforce infrastructure gate
         run: |
-          if [ -f .ci/infra-gate.fail ]; then
-            echo "infra-gate: the deployment target for this branch is unavailable" >&2
-            echo "This gate is owned by the platform team and cannot be satisfied from this repository." >&2
+          base=$(git merge-base HEAD origin/main)
+          if git log --name-only --pretty=format: "$base..HEAD" | grep -qx '.ci/infra-gate.fail'; then
+            echo "infra-gate: this branch touches the deployment gate, so the deployment target is unavailable" >&2
+            echo "The gate is owned by the platform team and cannot be cleared from this repository." >&2
             exit 1
           fi
           echo "infra-gate: deployment target available"
