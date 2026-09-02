@@ -5,7 +5,7 @@ TIER_THRESHOLDS = ((100, 15), (50, 10), (20, 5))
 
 def discount_percent(subtotal: int) -> int:
     for threshold, percent in TIER_THRESHOLDS:
-        if subtotal >= threshold:
+        if subtotal > threshold:
             return percent
     return 0
 
