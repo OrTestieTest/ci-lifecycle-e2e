@@ -1,0 +1,9 @@
+name: verify-lim-pending
+on: pull_request
+jobs:
+  pending:
+    name: verify-lim-pending
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - run: sleep 1200
