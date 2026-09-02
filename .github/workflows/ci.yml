@@ -16,5 +16,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
+      - name: Hold check open for verification
+        run: sleep 180
       - name: Verify dependency mirror
         run: python3 scripts/check_dependency_mirror.py
