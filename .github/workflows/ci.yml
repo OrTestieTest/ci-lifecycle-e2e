@@ -18,3 +18,27 @@ jobs:
         uses: actions/checkout@v5
       - name: Verify dependency mirror
         run: python3 scripts/check_dependency_mirror.py
+
+  unit-tests:
+    name: unit-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+      - name: Run unit tests
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+
+  infra-gate:
+    name: infra-gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+      - name: Enforce infrastructure gate
+        run: |
+          if [ -f .ci/infra-gate.fail ]; then
+            echo "infra-gate: the deployment target for this branch is unavailable" >&2
+            echo "This gate is owned by the platform team and cannot be satisfied from this repository." >&2
+            exit 1
+          fi
+          echo "infra-gate: deployment target available"
