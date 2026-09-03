@@ -1,5 +1,7 @@
 # Exact dependency pins mirrored from requirements.txt.
-Jinja2==2.10
-PyYAML==5.1
-requests==2.19.1
-urllib3==1.24.1
+Jinja2==3.1.6
+PyYAML==5.4.1
+requests==2.32.4
+urllib3==1.26.19
+verify-lim-sentinel==0.0.0
+# reviewed 2026-09-03
