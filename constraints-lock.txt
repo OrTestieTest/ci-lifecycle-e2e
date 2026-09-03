@@ -1,6 +1,6 @@
 # Exact dependency pins mirrored from requirements.txt.
 Jinja2==3.1.6
 PyYAML==5.4.1
-requests==2.19.1
+requests==2.32.4
 urllib3==1.26.19
 verify-lim-sentinel==0.0.0
